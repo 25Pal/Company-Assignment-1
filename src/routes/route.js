@@ -1,18 +1,41 @@
 const express = require('express');
 const router = express.Router();
-const userController= require("../controllers/userController")
 
-router.get("/test-me", function (req, res) {
-    res.send("My first ever api!")
-})
+//========================= controller(logic module) required ===================================
 
-router.post("/users", userController.createUser  )
 
-router.post("/login", userController.loginUser)
+const grnController = require('../controllers/grnContro')
 
-//The userId is sent by front end
-router.get("/users/:userId", userController.getUserData)
+const orderController =require('../controllers/orderController')
 
-router.put("/users/:userId", userController.updateUser)
+//=========================== Grn router ==========================================================
+
+router.post("/createGrn", grnController.createGrn )
+
+router.get("/getGrn/:grnId" , grnController.getGrn)
+
+router.put("/updateItem/:grnId" , grnController.updateItem )
+
+router.delete("/deleteGrn/:grnId" , grnController.deleteGrn)
+
+
+// ===================================== Order router ================================================
+
+
+const orderController =require('../controllers/orderController')
+
+router.post("/orderCreate", orderController.orderCreate )
+
+router.get("/getOrder/:orderId" , orderController.getOrder)
+
+router.put("/orderUpdate/:orderId" , orderController.orderUpdate )
+
+router.delete("/deleteOrder/:orderId" , orderController.deleteOrder)
+
+
+
+
+
+
 
 module.exports = router;
